@@ -26,11 +26,15 @@ use App\Http\Controllers\Api\V2\PostController as PostV2;
 // Route::put('/posts/{post}', [PostController::class, 'update']);
 // Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
-Route::apiResource('v1/posts', PostV1::class)->only('index','show', 'destroy');
+//Route V1
+Route::apiResource('v1/posts', PostV1::class)->only('index','show', 'destroy')
+    ->middleware('auth:sanctum');
 
 
 //Route V2 
-Route::apiResource('v2/posts', PostV2::class)->only('index','show', 'destroy');
+Route::apiResource('v2/posts', PostV2::class)->only(['index','show', 'destroy'])
+    ->middleware('auth:sanctum');
+    
 
 
 
